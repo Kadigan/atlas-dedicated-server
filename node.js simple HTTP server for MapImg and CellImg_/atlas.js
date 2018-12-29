@@ -4,7 +4,7 @@
  * Version: 1.0
  * Last change: 2018-12-29
  * Author: Kad, kadigan.ksb@gmail.com
- * Released under (CC), CC BY 3.0 or newer
+ * License: GPL v3.0
  */
 
 // CONFIG:
