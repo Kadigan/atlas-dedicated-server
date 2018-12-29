@@ -9,7 +9,7 @@ If this machine is on a different network entirely, remember to port-forward you
 ### Getting the Redis
 It is advised _not to use the bundled Redis DB_  as you will lose your config file each time it's updated. Please fetch a Redis server for Windows from [this Microsoft Archive repository on GitHub](https://github.com/MicrosoftArchive/redis/releases/) (version 3.2.100 is _confirmed to work_  with ATLAS DS).
 
-Under Linux, you probably need to just run your favourite package manager to get a copy.
+Under Linux, you probably need to just run your favourite package manager to get a copy of `redis-server`.
 
 ### Usage
 Drop the file into your Redis DB installation (backup the original first) and then restart the Redis service.
