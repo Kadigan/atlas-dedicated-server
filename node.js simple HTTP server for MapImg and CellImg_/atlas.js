@@ -88,7 +88,7 @@ var server = http.createServer (function handler (request, response) {
           var fileData = fs.readFileSync(ATLAS_ServerGrid_Folder + 'CellImg_' + CellImg.join('-') + '.png');
           response.writeHead(200, new defaultResponse('image/jpg', fileData.length));
           response.write(fileData);
-          response.end();D
+          response.end();
           return;
         }
         console.log("  ERROR: CellImg_" + CellImg.join('-') + ".jpg not found in " + ATLAS_ServerGrid_Folder + ", cannot serve. Aborting.");
