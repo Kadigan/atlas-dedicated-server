@@ -1,20 +1,18 @@
-/* ---------------------------------
- * ATLAS local HTTP server for serving map-related images
- *
- * Version: 1.0
- * Last change: 2018-12-29
- * Author: Kad, kadigan.ksb@gmail.com
- * License: GPL v3.0
- */
-
 // CONFIG:
+var nconf = require('nconf');
+nconf.argv().env();
+nconf.file({ file: 'config.json' });
 
-// on what port should the server be listening to? (you will need to forward this port, it's TCP)
-// NOTE: you only need ONE map server for your entire ATLAS World
-var ServerWWWPort = 10000;
+// default config values:
+nconf.defaults({
+   "serverGridFolder": "./ServerGrid",
+   "localport": 10000
+});
+
+var ServerWWWPort = nconf.get('localport');
 
 // where do you keep the images on disk? (note: replace all \ with / or it won't work!)
-var ATLAS_ServerGrid_Folder = 'd:/STEAM/steamapps/common/ATLAS Dedicated Server/ShooterGame/ServerGrid';
+var ATLAS_ServerGrid_Folder = nconf.get('serverGridFolder');
 
 // =====================================================================================================
 // import requirements
@@ -88,7 +86,7 @@ var server = http.createServer (function handler (request, response) {
           var fileData = fs.readFileSync(ATLAS_ServerGrid_Folder + 'CellImg_' + CellImg.join('-') + '.png');
           response.writeHead(200, new defaultResponse('image/jpg', fileData.length));
           response.write(fileData);
-          response.end();
+          response.end();D
           return;
         }
         console.log("  ERROR: CellImg_" + CellImg.join('-') + ".jpg not found in " + ATLAS_ServerGrid_Folder + ", cannot serve. Aborting.");
