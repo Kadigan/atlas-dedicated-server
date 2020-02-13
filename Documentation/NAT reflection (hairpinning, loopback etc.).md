@@ -13,10 +13,10 @@ What you have to do is make sure your router redirects requests from _inside_  y
 ------------------------------------------
 If you happen to be running `iptables` however, here's a line to get you started: 
 
-`iptables -t nat -A PREROUTING -i ! YOUR-WAN-INTERFACE -s LAN-NETWORK -d PUBLIC-IP -p tcp --dport PORT -j DNAT --to-destination LAN-SERVER-ADDRES`
+`iptables -t nat -A PREROUTING ! -i YOUR-WAN-INTERFACE -s LAN-NETWORK -d PUBLIC-IP -p tcp --dport PORT -j DNAT --to-destination LAN-SERVER-ADDRES`
 
 Explanation:
-- `-i ! YOUR-WAN-INTERFACE` is there to make sure you don't accidentally include traffic from the Internet - the traffic we want to modify is handled within the router itself (and also, it never hurts to prevent spoofing)
+- `! -i YOUR-WAN-INTERFACE` is there to make sure you don't accidentally include traffic from the Internet - the traffic we want to modify is handled within the router itself (and also, it never hurts to prevent spoofing)
 - `-s LAN-NETWORK` defines your LAN's network pool - for example `-s 10.0.0.0/8` - this is to make sure you're only affecting traffic originating from your local LAN
 - `-d PUBLIC-IP` line tells it to look for traffic that has a _destination_  of your public IP address
 - `--dport PORT` is the port you wish to affect, and
